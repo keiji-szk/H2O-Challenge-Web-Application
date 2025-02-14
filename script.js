@@ -32,7 +32,7 @@ smallCups.forEach((cup, idx) => {
 
 function highlightCups(idx) {
     if (idx === 7 && smallCups[idx].classList.contains("full")) idx--;
-    else if (smallCups[idx].classList.contains('full') && !smallCups[idx].nextElementSibling.classList.contains('full')) {
+    else if (smallCups[idx].classList.contains('full') && !smallCups[idx].nextElementSibling?.classList.contains('full')) {
         idx--
     }
 
@@ -50,14 +50,17 @@ function highlightCups(idx) {
 function updateBigCup() {
     const fullCups = document.querySelectorAll('.cup-small.full').length
     const totalCups = smallCups.length
+    const totalWater = 2 // Total water in liters (2L = 2000ml)
+    const cupVolume = 0.25 // Each cup holds 250ml (0.25L)
 
     if (fullCups === 0) {
         percentage.style.visibility = 'hidden'
         percentage.style.height = 0
+        percentage.innerText = ''
     } else {
         percentage.style.visibility = 'visible'
-        percentage.style.height = `${fullCups / totalCups * 330}px`
-        percentage.innerText = `${fullCups / totalCups * 1000}%`
+        percentage.style.height = `${(fullCups / totalCups) * 330}px`
+        percentage.innerText = `${(fullCups / totalCups) * 100}%`
     }
 
     if (fullCups === totalCups) {
@@ -65,6 +68,6 @@ function updateBigCup() {
         remained.style.height = 0
     } else {
         remained.style.visibility = 'visible'
-        liters.innerText = `${1 - (50 * fullCups / 1000)}L`
+        liters.innerText = `${(totalWater - (cupVolume * fullCups)).toFixed(2)}L`
     }
 }
