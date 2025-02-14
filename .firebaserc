@@ -1,7 +1,8 @@
 {
   "projects": {
     "default": "h2ochallengetesting",
-    "staging": "h2ochallengestaging"
+    "staging": "h2ochallengestaging",
+    "production": "h2ochallengeproduction"
   },
   "targets": {},
   "etags": {}
